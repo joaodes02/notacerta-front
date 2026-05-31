@@ -1,5 +1,6 @@
 import { Sidebar } from "@/components/layout/sidebar";
 import { Header } from "@/components/layout/header";
+import { MeSync } from "@/components/me-sync";
 
 export default function AppLayout({
   children,
@@ -8,6 +9,7 @@ export default function AppLayout({
 }) {
   return (
     <div className="flex h-screen bg-background">
+      <MeSync />
       <Sidebar />
       <div className="flex flex-1 flex-col overflow-hidden">
         <Header />
