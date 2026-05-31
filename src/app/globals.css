@@ -2,29 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --color-primary: #3b6d11;
-  --color-primary-hover: #27500a;
-  --color-primary-light: #eaf3de;
-  --color-secondary: #639922;
-  --color-background: #f9f9f7;
-  --color-surface: #ffffff;
-  --color-border: #d3d1c7;
-  --color-text-primary: #2c2c2a;
-  --color-text-secondary: #5f5e5a;
-  --color-text-muted: #888780;
-  --color-success: #3b6d11;
-  --color-error: #a32d2d;
-  --color-warning: #ba7517;
+@layer base {
+  :root {
+    /* Mapeamento da paleta NotaCerta para os tokens semânticos do shadcn (HSL) */
+    --background: 60 9% 98%; /* #F9F9F7 */
+    --foreground: 60 2% 17%; /* #2C2C2A */
+
+    --card: 0 0% 100%; /* #FFFFFF (surface) */
+    --card-foreground: 60 2% 17%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 60 2% 17%;
+
+    --primary: 93 73% 25%; /* #3B6D11 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 87 64% 37%; /* #639922 */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 60 9% 94%;
+    --muted-foreground: 48 3% 36%; /* #5F5E5A */
+
+    --accent: 86 47% 91%; /* #EAF3DE (primary-light) */
+    --accent-foreground: 93 73% 25%;
+
+    --destructive: 0 57% 41%; /* #A32D2D (error) */
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 48 12% 80%; /* #D3D1C7 */
+    --input: 48 12% 80%;
+    --ring: 93 73% 25%; /* primary */
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 60 2% 10%;
+    --foreground: 60 9% 96%;
+    --card: 60 2% 13%;
+    --card-foreground: 60 9% 96%;
+    --popover: 60 2% 13%;
+    --popover-foreground: 60 9% 96%;
+    --primary: 87 64% 45%;
+    --primary-foreground: 60 2% 10%;
+    --secondary: 87 50% 30%;
+    --secondary-foreground: 60 9% 96%;
+    --muted: 60 2% 18%;
+    --muted-foreground: 48 5% 65%;
+    --accent: 93 30% 22%;
+    --accent-foreground: 60 9% 96%;
+    --destructive: 0 57% 50%;
+    --destructive-foreground: 60 9% 96%;
+    --border: 60 2% 22%;
+    --input: 60 2% 22%;
+    --ring: 87 64% 45%;
+  }
 }
 
-body {
-  background: var(--color-background);
-  color: var(--color-text-primary);
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Entrada escalonada (landing) */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .animate-fade-up {
+    animation: fade-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Grão sutil para dar atmosfera ao fundo claro */
+  .bg-grain {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
   }
 }
